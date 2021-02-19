@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #FFEFBA;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Source Code Pro', monospace;
+}
+
+.container {
+    max-width: 90vw;
+    margin-inline: auto;
+}
+
+nav {
+    background-color: burlywood;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+nav * {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.controls * {
+    margin: 0.5rem;
+    flex-basis: 100%;
+    min-width: 5rem;
+    width: auto;
+}
+
+li {
+    list-style: none;
+}
