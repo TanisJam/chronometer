@@ -19,20 +19,20 @@
 <body>
     <nav>
         <div class="container">
-            <button id="settings"> (#) </button>
+            <button id="settings"> (CONF) </button>
             <h1> Chronome! </h1>
         </div>
     </nav>
 
     <main class="container">
         <header>
-            <p>00:00:00</p>
+            <p id="timmer">00:00:00</p>
             <div class="controls">
-                <button>Start / Stop</button>
-                <button> Check </button>
+                <button id="start-stop">Start / Stop</button>
+                <button id="check"> Check </button>
             </div>
         </header>
-        <div class="list">
+        <div class="list card">
             <ul>
                 <li>00:00:00</li>
                 <li>00:00:00</li>
@@ -42,6 +42,8 @@
         </div>
     </main>
 
+    <!--JS SCRIPS-->
+    <script src="script.js"></script>
 </body>
 
 </html>
