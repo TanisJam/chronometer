@@ -1,35 +1,46 @@
+const btnSettings = document.querySelector("#settings");
+
 let lbTimmer = document.querySelector("#timmer");
 let btnStartStop = document.querySelector("#start-stop");
-
-
-
 let btnCheck = document.querySelector("#check");
 
 let timeCounter = 0;
+
+//Config menu
+let open = false;
+btnSettings.addEventListener("click", () => {
+    let window = document.getElementById("config-pop").style;
+    if (!open) {
+        window.display = "block";
+        open = !open;
+    } else {
+        window.display = "none";
+        open = !open;
+    }
+});
+
+
+//Chronometer logic
 
 let onOff = false;
 let time;
 
 let startTimmer = function () {
-    onOff = !onOff;    
-    
+    onOff = !onOff;
+
     if (onOff) {
         time = setInterval(() => {
             timeCounter++;
             displayUpdate(milliToHuman(timeCounter));
-            
+
         }, 10);
     } else {
         clearInterval(time);
         timeCounter = 0;
     }
-
-
 }
-
-
-
 btnStartStop.addEventListener("click", startTimmer);
+
 
 //function to convert from millisecons to MIN:SEC:MIL
 let milliToHuman = function (millisecons = 0) {
