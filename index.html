@@ -24,7 +24,7 @@
         </div>
         <div id="config-pop">
             <ul class="config-window">
-                <li>Option 1<input type="checkbox" name="" id=""></li>
+                <li>Check restart?<input type="checkbox" id="restart-on-check" checked></li>
                 <li>Option 2<input type="checkbox" name="" id=""></li>
                 <li>Option 3<input type="checkbox" name="" id=""></li>
                 <li>Option 4<input type="checkbox" name="" id=""></li>
@@ -34,13 +34,13 @@
 
     <main class="container">
         <header>
-            <p id="timmer">00:00:00</p>
+            <p id="timmer" class="old-display">00:00:00</p>
             <div class="controls">
                 <button id="start-stop">Start / Stop</button>
                 <button id="check"> Check </button>
             </div>
         </header>
-        <div class="list card">
+        <div class="list card old-display">
             <ul>
                 <li>00:00:00</li>
                 <li>00:00:00</li>

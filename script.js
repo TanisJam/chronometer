@@ -6,6 +6,9 @@ let btnCheck = document.querySelector("#check");
 
 let timeCounter = 0;
 
+//Options
+const chbRestartOnCheck = document.querySelector("#restart-on-check");
+let presetTimes = ["00:00:03", "00:00:02", "00:00:01", "00:00:00"];
 //Config menu
 let open = false;
 btnSettings.addEventListener("click", () => {
@@ -20,11 +23,9 @@ btnSettings.addEventListener("click", () => {
 });
 
 
-//Chronometer logic
-
+//Chronometer run
 let onOff = false;
 let time;
-
 let startTimmer = function () {
     onOff = !onOff;
 
@@ -66,3 +67,4 @@ let displayUpdate = function (timeValue) {
     lbTimmer.innerHTML = timeValue;
 }
 
+//function to update the list of times
