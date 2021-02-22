@@ -3,12 +3,12 @@ let lbTimmer = document.querySelector("#timmer");
 let btnStartStop = document.querySelector("#start-stop");
 let btnCheck = document.querySelector("#check");
 let timeList = document.querySelector("#time-list");
-
+let btnReset = document.querySelector("#reset");
 
 //Getting options
 const chbRestartOnCheck = document.querySelector("#restart-on-check");
 
-let presetTimes = ["00:00:03", "00:00:02", "00:00:01", "00:00:00"];
+//let presetTimes = ["00:00:03", "00:00:02", "00:00:01", "00:00:00"];
 let previousTimes = [];
 
 const getOption = function (checkButton) {
@@ -36,13 +36,12 @@ btnSettings.addEventListener("click", () => {
 
 
 //Chronometer Start / Stop
-
 let timeCounter = 0;
 
 let onOff = false;
 let time;
 let startTimmer = function () {
-    if (onOff && timeCounter) { 
+    if (onOff && timeCounter) {
         checkTime();
     }
 
@@ -95,12 +94,58 @@ let milliToHuman = function (millisecons = 0) {
 }
 
 //function to update the display
-let displayUpdate = function (timeValue) {
+let displayUpdate = function (timeValue = "00:00:00") {
     lbTimmer.innerHTML = timeValue;
 }
 
 //function to update the time list
 let updateTimeList = function (givenTimes) {
+
+    if (givenTimes) {
+        timeList.innerHTML = "";
+
+        givenTimes.forEach((time) => {
+            timeList.innerHTML += `<li>${time}</li> `;
+        });
+    }
+
+}
+//Chronometer Check
+let checkTime = function () {
+
+    //if chronometer is runnig can check times
+    if (onOff) {
+
+        //Get time stamp
+        let timeStamp = getTimeStamp();
+
+
+        currentTime = milliToHuman(timeCounter);
+
+        if (optRestartOnCheck) {
+            timeCounter = 0;
+        }
+
+        previousTimes.unshift(`${currentTime}${timeStamp}`);
+
+        updateTimeList(previousTimes);
+    }
+}
+btnCheck.addEventListener("click", checkTime);
+
+
+//Chornometer Reset
+let resetChronometer = function () {
+    timeCounter = 0;
+    previousTimes = [];
+    updateTimeList(previousTimes);
+    displayUpdate();
+}
+btnReset.addEventListener("click", resetChronometer);
+
+
+//Get time stamp
+let getTimeStamp = function () {
     let timeElapsed = Date.now();
     let today = new Date(timeElapsed);
     let hour = today.getHours();
@@ -114,32 +159,6 @@ let updateTimeList = function (givenTimes) {
         seconds = "0" + seconds;
     }
 
-    let timeStamp = `<sup>${hour}:${minute}:${seconds} hs</sup>`;
-
-
-
-    if (givenTimes) {
-        timeList.innerHTML = "";
-
-        givenTimes.forEach((time) => {
-            timeList.innerHTML += `<li>${time}</li> ${timeStamp}`;
-        });
-    }
+    return (`<p>${hour}:${minute}:${seconds} hs</p>`);
 
 }
-//Chronometer Check
-let checkTime = function () {
-
-    if (onOff) {
-
-        currentTime = milliToHuman(timeCounter);
-        if (optRestartOnCheck) {
-            timeCounter = 0;
-        }
-
-        previousTimes.unshift(currentTime);
-
-        updateTimeList(previousTimes);
-    }
-}
-btnCheck.addEventListener("click", checkTime);
